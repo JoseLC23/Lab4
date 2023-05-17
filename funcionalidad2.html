@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Carrusel Horizontal de Imágenes con Texto</title>
+    <style>
+      /* Estilos CSS para el carrusel */
+      .slider {
+        width: 100%;
+        overflow: hidden;
+        margin-top: 60px;
+        
+      }
+      .slider-inner {
+        white-space: nowrap;
+        transition: transform 0.3s ease-out;
+        
+      }
+      .slide {
+        display: inline-block;
+        width: 100%;
+        height: auto;
+        position: relative;
+        
+      }
+      .slide-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0,0,0,0);
+        color: white;
+        font-size: 20px;
+        padding: 5px;
+        box-sizing: border-box;
+        transition: transform 0.3s ease-out;
+        transform: translateY(100%);
+      }
+      .slide.active .slide-caption {
+        transform: translateY(0);
+        background-color: #817f7f;
+        width: 800px;
+        
+      }
+      
+      body {
+        background: -webkit-repeating-radial-gradient(circle,#495057, #ADB5BD, #DEE2E6, #F8F9FA);
+
+    }
+
+      header {
+        background-color: #333;
+        color: white;
+        padding: 20px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 24px;
+      }
+      p {
+        margin: 0;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+
+
+    <header>
+
+        <h1>Título de la Página de Noticias</h1>
+        <p>Descripción breve de la página de noticias</p>
+
+    </header>
+
+    <div class="slider">
+      <div class="slider-inner">
+        <div class="slide active">
+          <img src="https://ichef.bbci.co.uk/news/800/cpsprodpb/181AA/production/_129703789_gettyimages-1439005003.jpg" alt="Imagen 1">
+          <div class="slide-caption">Alarmista sobre IA</div>
+        </div>
+        <div class="slide">
+          <img src="https://ichef.bbci.co.uk/news/800/cpsprodpb/A24D/production/_109894514_hi058242611.jpg" alt="Imagen 2">
+          <div class="slide-caption">¿Cómo se logro el mayor robo de Alemania?</div>
+        </div>
+        <div class="slide">
+          <img src="https://ichef.bbci.co.uk/news/800/cpsprodpb/0E0F/production/_129699530_gettyimages-586626621.jpg" alt="Imagen 3">
+          <div class="slide-caption">Top 5 mejores playas de Centroamérica</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <h3 style="background-color: #333; padding: 10px; color: #ffff;">Tendencias</h3>
+        <p style="color:#333">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis rerum, aperiam amet sed harum alias aliquid delectus unde sint quia quam sapiente laborum culpa provident veritatis cumque, 
+            necessitatibus aut deserunt! Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+            Quos vitae atque unde! Numquam corporis dolore ullam optio expedita nostrum rerum laudantium adipisci illum eligendi quod, 
+            quibusdam, laboriosam provident dolorem aliquam?</p>
+
+
+
+
+    </div>
+    <script>
+      /* Script JavaScript para el carrusel */
+      const slider = document.querySelector('.slider');
+      const sliderInner = document.querySelector('.slider-inner');
+      const slides = document.querySelectorAll('.slide');
+      const slideWidth = slides[0].clientWidth;
+
+      let slideIndex = 0;
+
+      sliderInner.style.transform = `translateX(-${slideIndex * slideWidth}px)`;
+
+      setInterval(() => {
+        // Oculta el texto de la imagen actual
+        slides[slideIndex].classList.remove('active');
+        // Avanza al siguiente slide
+        slideIndex = (slideIndex + 1) % slides.length;
+        // Muestra el texto de la imagen siguiente
+        slides[slideIndex].classList.add('active');
+        // Desplaza el carrusel
+        sliderInner.style.transform = `translateX(-${slideIndex * slideWidth}px)`;
+      }, 2000);
+    </script>
+  </body>
+</html>
